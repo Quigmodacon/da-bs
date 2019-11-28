@@ -127,6 +127,19 @@ h1 {
 	background: #ccc;
 }
 
+.main-form {
+	max-width: 500px;
+	margin: auto;
+}
+
+.main-form > div {
+	padding: 10px 0;
+}
+
+.input-row input {
+	width: 100%;
+}
+
 /* if screen < 600px stack links */
 @media screen and (max-width: 600px) {
 	.topnav a, .topnav input[type=text] {
@@ -141,3 +154,4 @@ h1 {
 		border: 1px solid #ccc;
 	}
 }
+
