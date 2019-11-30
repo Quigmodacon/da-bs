@@ -82,20 +82,22 @@ h1 {
 	color: white;
 }
 
-.topnav button {
+.topnav .account-button {
 	float: right;
 	padding: 6px 10px;
 	margin-top: 8px;
 	margin-right: 16px;
 	margin-bottom: 1px;
 	background: #ddd;
+	color: #000000;
 	font-size: 17px;
 	border: none;
 	cursor: pointer;
 }
 
-.topnav button:hover {
+.topnav .account-button:hover {
 	background-color: #ccc;
+	color: #000000;
 }
 
 /* Style search box in navbar */
@@ -155,3 +157,11 @@ h1 {
 	}
 }
 
+/* Give a nice border to tables that need it */
+.table-border, .table-border td, .table-border th {
+	border: #000000 1px solid;
+	padding: 0.5em 1em;
+}
+.table-border {
+	border-collapse: collapse;
+}

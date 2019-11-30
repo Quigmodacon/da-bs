@@ -12,17 +12,23 @@
 
 		<?php
 			if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+				// Check the user credentials
 				include 'database.php';
-				$stmt = $conn->prepare("SELECT username, password_hash FROM user WHERE username = ? AND password_hash = ?");
-				$stmt->bind_param("ss", $_POST["username"], $_POST["password"])
+				$username = $_POST["username"];
+				$password = $_POST["password"];
+				$stmt = $conn->prepare("SELECT COUNT(userID) FROM user WHERE username = ? AND password_hash = ?");
+				$stmt->bind_param("ss", $username, $password);
 				$stmt->execute();
-				//
-				if ($stmt->num_rows > 0) {
+				// Bind the result. See https://www.php.net/manual/en/mysqli-stmt.bind-result.php
+				$stmt->bind_result($result);
+                                if ($stmt->fetch() && $result > 0) {
 					$_SESSION['logInBool'] = true;
+					// Save the username to be used on other pages
+					$_SESSION['username'] = $username;
 					// Redirect to the home page
 					header("Location: home.php");
 				} else {
-					echo "<p>Incorrect username or password entered.</p>"
+					echo '<p style="text-align: center;">Incorrect username or password entered.</p>';
 				}
 				$conn->close();
 			}
@@ -38,7 +44,7 @@
 
 				<div class="input-row">
 					<label for="password">Password</label>
-					<input id="password" name="pasword" type="password">
+					<input id="password" name="password" type="password">
 				</div>
 
 				<input type="submit" value="Login">

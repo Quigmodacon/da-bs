@@ -6,13 +6,29 @@
 	</head>
 	<body id="hellspawn">
 		<!-- header -->	
-		<?php include 'nav.php';?>		
+                <?php session_start(); ?>
+		<?php include 'nav.php'; ?>
+		<?php include 'check_login.php'; ?>
 		<div>
-			<h1 align="center">Home</h1>
+			<h1 align="center">Account</h1>
 			<!-- rest of body -->
-			<div id="paraOne">
-				<p>Go ahead and look through our database, we are currently working on adding new organisms every week.</p>
-			</div>
+			<?php
+				include 'database.php';
+				$username = $_SESSION['username'];
+				$stmt = $conn->prepare("SELECT userID, email FROM user WHERE username = ?");
+				$stmt->bind_param("s", $username);
+				$stmt->execute();
+				// Bind the result
+				$stmt->bind_result($userID, $email);
+				if ($stmt->fetch()) {
+					echo '<table class="table-border" style="margin: auto;">';
+					echo "<tr><td>Username</td><td>" . $username . "</td></tr>";
+					echo "<tr><td>Email</td><td>" . $email . "</td></tr>";
+					echo "</table>";
+				} else {
+					echo '<p style="text-align: center;"><em>An error occured while fetching your account information.</em></p>';
+				}
+			?>
 		</div>
 	</body>
 </html>

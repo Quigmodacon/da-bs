@@ -6,9 +6,9 @@
 			session_start();
 			
 			unset($_SESSION['logInBool']);
-			$loggedIn = false;
-			$_SESSION['logInBool'] = $loggedIn;
+			unset($_SESSION['username']);
+			// Redirect to the login page on logout
+			header("Location: login.php");
 		?>
-		<meta http-equiv="Refresh" content="0; url=https://dbdev.cs.kent.edu/~jhanse12/da-bs/home.php" />
 	</body>
 </html>

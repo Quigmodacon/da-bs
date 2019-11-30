@@ -12,11 +12,17 @@
 
 		<?php
 			include 'database.php';
-			if ($_SESSION['REQUEST_METHOD'] == 'POST') {
+			if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				// Insert the record
 				$stmt = $conn->prepare("INSERT INTO user (username, password_hash, email) VALUES (?, ?, ?)");
 				$stmt->bind_param("sss", $_POST["username"], $_POST["password"], $_POST["email"]);
 				$stmt->execute();
+				
+				$_SESSION['logInBool'] = true;
+				// Save the username to be used on other pages
+				$_SESSION['username'] = $username;
+				// Redirect to the home page
+				header("Location: home.php");
 			}
 		?>
 		
