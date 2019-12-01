@@ -5,13 +5,17 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body id="hellspawn">
+		<?php session_start(); ?>
+		<?php $loggedIn = $_SESSION['logInBool'] ?>
 		<!-- header -->	
 		<?php include 'nav.php';?>		
+                <?php include 'check_login.php'; ?>
 		<div>
-			<h1 align="center">Organism</h1>
+			<h1 align="center">Search Results</h1>
 			<!-- rest of body -->
-			<div id="paraOne">
-				
+			<?php
+				// TODO
+			?>
 			</div>
 		</div>
 	</body>
