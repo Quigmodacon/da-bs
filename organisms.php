@@ -8,10 +8,10 @@
 		<!-- header -->	
 		<?php include 'nav.php';?>		
 		<div>
-			<h1 align="center">Home</h1>
+			<h1 align="center">Organism</h1>
 			<!-- rest of body -->
 			<div id="paraOne">
-				<p>Go ahead and look through our database, we are currently working on adding new organisms every week.</p>
+				
 			</div>
 		</div>
 	</body>
