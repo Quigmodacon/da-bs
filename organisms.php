@@ -6,13 +6,15 @@
 	</head>
 	<body id="hellspawn">
 		<!-- header -->	
-		<?php include 'nav.php';?>		
+		<?php session_start(); ?>
+		<?php include 'nav.php'; ?>		
+		<?php include 'check_login.php'; ?>
 		<div>
-			<h1 align="center">Home</h1>
+			<h1 align="center">Organisms</h1>
 			<!-- rest of body -->
-			<div id="paraOne">
-				<p>Go ahead and look through our database, we are currently working on adding new organisms every week.</p>
-			</div>
+			<?php
+				// TODO
+			?>
 		</div>
 	</body>
 </html>

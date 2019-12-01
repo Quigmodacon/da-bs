@@ -9,8 +9,10 @@
 		<?php $loggedIn = $_SESSION['logInBool'] ?>
 		<!-- header -->	
 		<?php include 'nav.php';?>		
+                <?php include 'check_login.php'; ?>
 		<div>
 			<h1 align="center">Home</h1>
+			<?php echo '<p style="text-align: center;">Welcome <strong>' . $_SESSION['username'] . '</strong>!</p>'; ?>
 			<!-- rest of body -->
 			<div id="paraOne">
 				<p>Go ahead and look through our database, we are currently working on adding new organisms every week.</p>
