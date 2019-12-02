@@ -6,9 +6,9 @@
 	<a href="about.php">About</a>
 
 	<div class="search-container">
-		<form action="search.php" style="margin-bottom: 6px;">
-			<input type="text" placeholder="Search.." name="search">
-			<button type="submit">GO</button>
+		<form method="post" action="search.php" style="margin-bottom: 6px;">
+			<input type="text" placeholder="Search.." name="search" id="search_id">
+			<button type="submit" name="go" id="go">GO</button>
 		</form>
 	</div>
 	<?php if ($_SESSION["logInBool"]): ?>
