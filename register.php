@@ -14,7 +14,7 @@
 			include 'database.php';
 			if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				// Insert the record
-				$stmt = $conn->prepare("INSERT INTO user (username, password_hash, email) VALUES (?, ?, ?)");
+				$stmt = $conn->prepare("INSERT INTO user (username, password_hash, email, admin) VALUES (?, ?, ?, 0)");
 				$stmt->bind_param("sss", $_POST["username"], $_POST["password"], $_POST["email"]);
 				$stmt->execute();
 				
