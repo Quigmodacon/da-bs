@@ -8,6 +8,7 @@
 		<!-- header -->	
                 <?php session_start(); ?>
 		<?php include 'nav.php'; ?>
+		<?php include 'adminNav.php'; ?>
 		<?php include 'check_login.php'; ?>
 		<div>
 			<h1 align="center">Account</h1>
