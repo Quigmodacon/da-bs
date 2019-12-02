@@ -5,16 +5,19 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body id="hellspawn">
-		<!-- header -->	
 		<?php session_start(); ?>
-		<?php include 'nav.php';?>		
-		<?php include 'check_login.php'; ?>
+		<?php $loggedIn = $_SESSION['logInBool'] ?>
+		<!-- header -->	
+		<?php include 'nav.php';?>
+		<?php require 'phpFunctions.php'?>
+		<?php require 'database.php' ?>
+        <?php include 'check_login.php'; ?>
 		<div>
 			<h1 align="center">Biomes</h1>
+			<?php echo '<p style="text-align: center;">Welcome <strong>' . $_SESSION['username'] . '</strong>!</p>'; ?>
 			<!-- rest of body -->
-			<?php
-				// TODO
-                        ?>
+			<div id="paraOne">
+				<?php show_biome($conn) ?>
 			</div>
 		</div>
 	</body>
