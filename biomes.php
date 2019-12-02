@@ -14,7 +14,6 @@
         <?php include 'check_login.php'; ?>
 		<div>
 			<h1 align="center">Biomes</h1>
-			<?php echo '<p style="text-align: center;">Welcome <strong>' . $_SESSION['username'] . '</strong>!</p>'; ?>
 			<!-- rest of body -->
 			<div id="paraOne">
 				<?php show_biome($conn) ?>

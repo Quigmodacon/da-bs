@@ -5,16 +5,19 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body id="hellspawn">
-		<!-- header -->	
 		<?php session_start(); ?>
-		<?php include 'nav.php'; ?>
-		<?php include 'check_login.php'; ?>
+		<?php $loggedIn = $_SESSION['logInBool'] ?>
+		<!-- header -->	
+		<?php include 'nav.php';?>
+		<?php require 'phpFunctions.php'?>
+		<?php require 'database.php' ?>
+        <?php include 'check_login.php'; ?>
 		<div>
 			<h1 align="center">Locations</h1>
 			<!-- rest of body -->
-			<?php
-				// TODO
-			?>
+			<div id="paraOne">
+				<?php show_location($conn) ?>
+			</div>
 		</div>
 	</body>
 </html>
