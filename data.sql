@@ -31,7 +31,7 @@ insert into location_biome values (7, 3);
 insert into location_biome values (8, 3);
 
 insert into organism values (1, 'Giant sable antelope', 'Hippotragus niger variani', 'Animal');
-insert into organism values (2, 'Vernay's climbing mouse', 'Dendromus vernayi', 'Animal');
+insert into organism values (2, "Vernay's climbing mouse", 'Dendromus vernayi', 'Animal');
 insert into organism values (3, 'Giraffe', 'Giraffa', 'Animal');
 insert into organism values (4, 'Cape bushbuck', 'Tragelaphus sylvaticus', 'Animal');
 insert into organism values (5, 'Blue duiker', 'Philantomba monticola', 'Animal');
