@@ -17,12 +17,8 @@
 			<!-- rest of body -->
 			<div id="paraOne">
 				<?php
-					if(! get_magic_quotes_gpc() ) { // if magic qoutes is not set, then add escapes manually and get Posted parameters in local variables
-        				$search_id = addslashes ($_POST['search_id']);
-    				} else {
-        				$search_id = $_POST['search_id'];
-    				}
-					getOrganism($conn, $search_id) 
+        			$search = $_GET['search'];
+					getOrganism($conn, $search) 
 				?>
 			</div>
 		</div>

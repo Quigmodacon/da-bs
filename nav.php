@@ -6,8 +6,8 @@
 	<a href="about.php">About</a>
 
 	<div class="search-container">
-		<form method="post" action="search.php" style="margin-bottom: 6px;">
-			<input type="text" placeholder="Search.." name="search" id="search_id">
+		<form method="get" action="search.php" style="margin-bottom: 6px;">
+			<input type="text" placeholder="Search.." name="search" id="search">
 			<button type="submit" name="go" id="go">GO</button>
 		</form>
 	</div>

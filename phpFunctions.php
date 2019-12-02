@@ -108,38 +108,45 @@ function show_location($conn) {
 }
 
 function getOrganism($conn, $search) {
-    $sql = "SELECT * FROM organism WHERE orgID = ".$search." or orgName = ".$search." or sciName = ".$search." or orgType = ".$search;
-	$result = $conn->query($sql);
+	if (is_numeric($search)) {
+		$sql = $conn->prepare('SELECT * FROM organism WHERE organismID = ?');
+		$sql->bind_param('i', $search);
+	}
+	else {
+		$sql = $conn->prepare('SELECT * FROM organism WHERE orgName = ? OR sciName = ? OR orgType = ?');
+		$sql->bind_param('sss', $search, $search, $search);
+	}
+	$sql->execute();
+	$result = $sql->get_result();
 
-		if ($result->num_rows > 0) {
-			
-			echo "<br><h3>Organisms<h3> <br>";
-			
-			echo '<table border>';
-			echo '<thead><tr>';
-			echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>'.'<th>'."Scientific Name".'</th>'.'<th>'."Organism Type".'</th>';
-			echo '</tr></thead>';
-			echo '<tbody>';
+	if ($result->num_rows > 0) {
+		
+		echo '<br><h3 align="center" style="color: black;">Organisms<h3> <br>';
+		
+		echo '<table border>';
+		echo '<thead><tr>';
+		echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>'.'<th>'."Scientific Name".'</th>'.'<th>'."Organism Type".'</th>';
+		echo '</tr></thead>';
+		echo '<tbody>';
 
-			while($row = $result->fetch_assoc()) {
-				echo '<tr>';
-				echo "<td>" . $row["organismID"]. "</td>";
-				echo "<td>" . $row["orgName"]. "</td>";
-				echo "<td>" . $row["sciName"]. "</td>";
-				echo "<td>" . $row["orgType"]. "</td>";
-				echo '</tr>';
-			}
-			
-			echo '</tbody>';
-			echo '</table>';
-			
-			// output data of each row
-			
-			
-		} 
-		else {
-			echo "No Organisms Found";
+		while($row = $result->fetch_assoc()) {
+			echo '<tr>';
+			echo "<td>" . $row["organismID"]. "</td>";
+			echo "<td>" . $row["orgName"]. "</td>";
+			echo "<td>" . $row["sciName"]. "</td>";
+			echo "<td>" . $row["orgType"]. "</td>";
+			echo '</tr>';
 		}
+			
+		echo '</tbody>';
+		echo '</table>';
+			
+		// output data of each row
+			
+			
+	} else {
+		echo "No Organisms Found";
+	}
 	//$conn->close();
 }
 
