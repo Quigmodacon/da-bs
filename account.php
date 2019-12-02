@@ -14,6 +14,7 @@
 		<div>
 			<h1 align="center">Account</h1>
 			<!-- rest of body -->
+			<div id="paraOne">
 			<?php
 				include 'database.php';
 				$username = $_SESSION['username'];
@@ -31,6 +32,7 @@
 					echo '<p style="text-align: center;"><em>An error occured while fetching your account information.</em></p>';
 				}
 			?>
+			</div>
 		</div>
 	</body>
 </html>
