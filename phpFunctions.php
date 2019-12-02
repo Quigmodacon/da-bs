@@ -4,12 +4,10 @@ function show_organism($conn) {
 
 	//include "dbconnect.php";
 
-	$sql = "SELECT orgID, orgName, sciName, orgType FROM organism";
+	$sql = "SELECT organismID, orgName, sciName, orgType FROM organism";
 	$result = $conn->query($sql); // object oriented execution of query
 
 		if ($result->num_rows > 0) {
-			
-			echo "<br><h3>Organisms<h3> <br>";
 			
 			echo '<table border>';
 			echo '<thead><tr>';
@@ -48,8 +46,6 @@ function show_biome($conn) {
 
 		if ($result->num_rows > 0) {
 			
-			echo "<br><h3>Biomes<h3> <br>";
-			
 			echo '<table border>';
 			echo '<thead><tr>';
 			echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>';
@@ -84,8 +80,6 @@ function show_location($conn) {
 	$result = $conn->query($sql); // object oriented execution of query
 
 		if ($result->num_rows > 0) {
-			
-			echo "<br><h3>Locations<h3> <br>";
 			
 			echo '<table border>';
 			echo '<thead><tr>';
