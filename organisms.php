@@ -1,0 +1,24 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<title>Jonathan Hansen</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body id="hellspawn">
+		<?php session_start(); ?>
+		<?php $loggedIn = $_SESSION['logInBool'] ?>
+		<!-- header -->	
+		<?php include 'nav.php';?>
+		<?php require 'phpFunctions.php'?>
+		<?php require 'database.php' ?>
+        <?php include 'check_login.php'; ?>
+		<div>
+			<h1 align="center">Organisms</h1>
+			<?php echo '<p style="text-align: center;">Welcome <strong>' . $_SESSION['username'] . '</strong>!</p>'; ?>
+			<!-- rest of body -->
+			<div id="paraOne">
+				<?php show_organism($conn) ?>
+			</div>
+		</div>
+	</body>
+</html>
