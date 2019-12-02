@@ -6,11 +6,11 @@
 	</head>
 	<body id="hellspawn">
 		<?php session_start(); ?>
-		<?php $loggedIn = $_SESSION['logInBool'] ?>
+		<?php $loggedIn = $_SESSION['logInBool']; ?>
 		<!-- header -->	
-		<?php include 'nav.php';?>
-		<?php require 'phpFunctions.php'?>
-		<?php require 'database.php' ?>
+		<?php include 'nav.php'; ?>
+		<?php require 'phpFunctions.php'; ?>
+		<?php require 'database.php'; ?>
         <?php include 'check_login.php'; ?>
 		<div>
 			<h1 align="center">Search Results</h1>
@@ -18,7 +18,9 @@
 			<div id="paraOne">
 				<?php
         			$search = $_GET['search'];
-					getOrganism($conn, $search) 
+					getOrganism($conn, $search); 
+					getBiome($conn, $search);
+					getLocation($conn, $search);
 				?>
 			</div>
 		</div>

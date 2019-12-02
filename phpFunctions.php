@@ -109,11 +109,11 @@ function show_location($conn) {
 
 function getOrganism($conn, $search) {
 	if (is_numeric($search)) {
-		$sql = $conn->prepare('SELECT * FROM organism WHERE organismID = ?');
+		$sql = $conn->prepare('SELECT * FROM organism WHERE organismID LIKE ?');
 		$sql->bind_param('i', $search);
 	}
 	else {
-		$sql = $conn->prepare('SELECT * FROM organism WHERE orgName = ? OR sciName = ? OR orgType = ?');
+		$sql = $conn->prepare('SELECT * FROM organism WHERE orgName LIKE ? OR sciName LIKE ? OR orgType LIKE ?');
 		$sql->bind_param('sss', $search, $search, $search);
 	}
 	$sql->execute();
@@ -145,7 +145,89 @@ function getOrganism($conn, $search) {
 			
 			
 	} else {
-		echo "No Organisms Found";
+		echo '<p id="sFail">No Organisms Found<p>';
+	}
+	//$conn->close();
+}
+
+function getBiome($conn, $search) {
+	if (is_numeric($search)) {
+		$sql = $conn->prepare('SELECT * FROM biome WHERE biomeID LIKE ?');
+		$sql->bind_param('i', $search);
+	}
+	else {
+		$sql = $conn->prepare('SELECT * FROM biome WHERE bioName LIKE ?');
+		$sql->bind_param('s', $search);
+	}
+	$sql->execute();
+	$result = $sql->get_result();
+
+	if ($result->num_rows > 0) {
+		
+		echo '<br><h3 align="center" style="color: black;">Biomes<h3> <br>';
+		
+		echo '<table border>';
+		echo '<thead><tr>';
+		echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>';
+		echo '</tr></thead>';
+		echo '<tbody>';
+
+		while($row = $result->fetch_assoc()) {
+			echo '<tr>';
+			echo "<td>" . $row["biomeID"]. "</td>";
+			echo "<td>" . $row["bioName"]. "</td>";
+			echo '</tr>';
+		}
+			
+		echo '</tbody>';
+		echo '</table>';
+			
+		// output data of each row
+			
+			
+	} else {
+		echo '<p id="sFail">No Biomes Found</p>';
+	}
+	//$conn->close();
+}
+
+function getLocation($conn, $search) {
+	if (is_numeric($search)) {
+		$sql = $conn->prepare('SELECT * FROM location WHERE locationID LIKE ?');
+		$sql->bind_param('i', $search);
+	}
+	else {
+		$sql = $conn->prepare('SELECT * FROM location WHERE locName LIKE ?');
+		$sql->bind_param('s', $search);
+	}
+	$sql->execute();
+	$result = $sql->get_result();
+
+	if ($result->num_rows > 0) {
+		
+		echo '<br><h3 align="center" style="color: black;">Locations<h3> <br>';
+		
+		echo '<table border>';
+		echo '<thead><tr>';
+		echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>';
+		echo '</tr></thead>';
+		echo '<tbody>';
+
+		while($row = $result->fetch_assoc()) {
+			echo '<tr>';
+			echo "<td>" . $row["locationID"]. "</td>";
+			echo "<td>" . $row["locName"]. "</td>";
+			echo '</tr>';
+		}
+			
+		echo '</tbody>';
+		echo '</table>';
+			
+		// output data of each row
+			
+			
+	} else {
+		echo '<p id="sFail">No Locations Found</p>';
 	}
 	//$conn->close();
 }
