@@ -1,3 +1,5 @@
+insert into user (username, password_hash, email, isAdmin) values ('ADMIN', 'admin','none', 1);
+
 insert into biome values (1, 'Temperate deciduous forest');
 insert into biome values (2, 'Coniferous forest');
 insert into biome values (3, 'Woodland');
