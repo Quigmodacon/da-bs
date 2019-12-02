@@ -45,7 +45,7 @@ CREATE TABLE user (
     username VARCHAR(10),
     password_hash VARCHAR(256),
     email VARCHAR(256),
-    admin BOOLEAN,
+    isAdmin BOOLEAN,
     PRIMARY KEY (userID)
 );
 
