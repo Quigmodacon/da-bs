@@ -12,7 +12,35 @@
 		<?php include 'adminNav.php'; ?>
 		<?php include 'check_login.php'; ?>
 		<div>
-			<?php include "insertAny.php" ?>
+			<?php
+				include 'database.php';
+				if ( isset($_GET['oName']) && isset($_GET['sName']) && isset($_GET['type'])) {
+					$oName = $_GET['oName'];
+					$sName = $_GET['sName'];
+					$type = $_GET['type'];
+					$sql = $conn->prepare("INSERT INTO organism (organismName, sciName, type) values (?, ?, ?)");	
+					$sql->bind_param('sss', $oName, $sName, $type);
+					if(! $sql->execute()) {
+						echo 'Fail';
+					}
+				}	 
+				else if (isset($_GET['bName'])) {
+					$bName = $_GET['bName'];
+					$sql = $conn->prepare("INSERT INTO biome (bioName) VALUES (?)");
+					$sql->bind_param('s', $bName);
+					$sql->execute();
+				}
+	 			else if (isset($_GET['lName'])) {
+					$lName = $_GET['lName'];
+					$sql = $conn->prepare("INSERT INTO location (locName) VALUES (?)");
+					$sql->bind_param('s', $lName);
+					$sql->execute();
+
+				} 
+				else {
+					echo '<p align="center">Not enough information</p>';
+				}
+			?>
 			<h1 align="center">Insert</h1>
 			<!-- rest of body -->
 			<div id="paraOne">
