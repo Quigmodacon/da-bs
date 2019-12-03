@@ -18,11 +18,9 @@
 					$oName = $_GET['oName'];
 					$sName = $_GET['sName'];
 					$type = $_GET['type'];
-					$sql = $conn->prepare("INSERT INTO organism (organismName, sciName, type) values (?, ?, ?)");	
+					$sql = $conn->prepare("INSERT INTO organism (orgName, sciName, orgType) VALUES (?, ?, ?)");	
 					$sql->bind_param('sss', $oName, $sName, $type);
-					if(! $sql->execute()) {
-						echo 'Fail';
-					}
+					$sql->execute();
 				}	 
 				else if (isset($_GET['bName'])) {
 					$bName = $_GET['bName'];
