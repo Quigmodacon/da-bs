@@ -109,11 +109,11 @@ function show_location($conn) {
 
 function getOrganism($conn, $search) {
 	if (is_numeric($search)) {
-		$sql = $conn->prepare('SELECT * FROM organism WHERE organismID LIKE ?');
+		$sql = $conn->prepare("SELECT * FROM organism WHERE organismID LIKE CONCAT('%', ?, '%')");
 		$sql->bind_param('i', $search);
 	}
 	else {
-		$sql = $conn->prepare('SELECT * FROM organism WHERE orgName LIKE ? OR sciName LIKE ? OR orgType LIKE ?');
+		$sql = $conn->prepare("SELECT * FROM organism WHERE orgName LIKE CONCAT('%', ?, '%') OR sciName LIKE CONCAT('%', ?, '%') OR orgType LIKE CONCAT('%', ?, '%')");
 		$sql->bind_param('sss', $search, $search, $search);
 	}
 	$sql->execute();
@@ -152,11 +152,11 @@ function getOrganism($conn, $search) {
 
 function getBiome($conn, $search) {
 	if (is_numeric($search)) {
-		$sql = $conn->prepare('SELECT * FROM biome WHERE biomeID LIKE ?');
+		$sql = $conn->prepare("SELECT * FROM biome WHERE biomeID LIKE CONCAT('%', ?, '%')");
 		$sql->bind_param('i', $search);
 	}
 	else {
-		$sql = $conn->prepare('SELECT * FROM biome WHERE bioName LIKE ?');
+		$sql = $conn->prepare("SELECT * FROM biome WHERE bioName LIKE CONCAT('%', ?, '%')");
 		$sql->bind_param('s', $search);
 	}
 	$sql->execute();
@@ -193,11 +193,11 @@ function getBiome($conn, $search) {
 
 function getLocation($conn, $search) {
 	if (is_numeric($search)) {
-		$sql = $conn->prepare('SELECT * FROM location WHERE locationID LIKE ?');
+		$sql = $conn->prepare("SELECT * FROM location WHERE locationID LIKE CONCAT('%', ?, '%')");
 		$sql->bind_param('i', $search);
 	}
 	else {
-		$sql = $conn->prepare('SELECT * FROM location WHERE locName LIKE ?');
+		$sql = $conn->prepare("SELECT * FROM location WHERE locName LIKE CONCAT('%', ?, '%')");
 		$sql->bind_param('s', $search);
 	}
 	$sql->execute();

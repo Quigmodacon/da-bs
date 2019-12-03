@@ -12,7 +12,7 @@
 		<?php include 'adminNav.php'; ?>
 		<?php include 'check_login.php'; ?>
 		<div>
-			<h1 align="center">Insert</h1>
+			<h1 align="center">Delete</h1>
 			<!-- rest of body -->
 			<div id="paraOne">
 				<p>Add 3 delete forms here (place functions in phpfunctions.php)</p>
