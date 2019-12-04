@@ -19,18 +19,52 @@
 					$oName = $_GET['oName'];
 					$sName = $_GET['sName'];
 					$type = $_GET['type'];
+					$sql = $conn->prepare("SELECT organismID FROM organism WHERE orgName = ? AND sciName = ? AND orgType = ?");
+					$sql->bind_param('sss', $oName, $sName, $type);
+					$sql->execute();
+					$sql->bind_result($orgID);
+					$sql->fetch();
+					$sql->close();
+					$sql = $conn->prepare("DELETE FROM organism_location WHERE organismID = ?");
+					$sql->bind_param('s', $orgID);
+					$sql->execute();
+					$sql->close();
 					$sql = $conn->prepare("DELETE FROM organism WHERE orgName = ? AND sciName = ? AND orgType = ?");	
 					$sql->bind_param('sss', $oName, $sName, $type);
 					$sql->execute();
 				}	 
 				else if (isset($_GET['bName'])) {
 					$bName = $_GET['bName'];
+					$sql = $conn->prepare("SELECT biomeID FROM biome WHERE bioName = ?");
+					$sql->bind_param('s', $bName);
+					$sql->execute();
+					$sql->bind_result($bioID);
+					$sql->fetch();
+					$sql->close();
+					$sql = $conn->prepare("DELETE FROM location_biome WHERE biomeID = ?");
+					$sql->bind_param('s', $bioID);
+					$sql->execute();
+					$sql->close();
 					$sql = $conn->prepare("DELETE FROM biome WHERE bioName = ?");
 					$sql->bind_param('s', $bName);
 					$sql->execute();
 				}
 	 			else if (isset($_GET['lName'])) {
 					$lName = $_GET['lName'];
+					$sql = $conn->prepare("SELECT locationID FROM location WHERE locName = ?");
+					$sql->bind_param('s', $lName);
+					$sql->execute();
+					$sql->bind_result($locID);
+					$sql->fetch();
+					$sql->close();
+					$sql = $conn->prepare("DELETE FROM location_biome WHERE locID = ?");
+					$sql->bind_param('s', $locID);
+					$sql->execute();
+					$sql->close();
+					$sql = $conn->prepare("DELETE FROM organism_location WHERE locID = ?");
+					$sql->bind_param('s', $locID);
+					$sql->execute();
+					$sql->close();
 					$sql = $conn->prepare("DELETE FROM location WHERE locName = ?");
 					$sql->bind_param('s', $lName);
 					$sql->execute();
