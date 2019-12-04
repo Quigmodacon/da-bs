@@ -23,7 +23,7 @@
 				
 				echo '<h1 align="center" id=headertext>' . $locName . '</h1>';
 				echo '<div id="paraOne">';
-				echo '<image src="images/' . $locName . '.jpg" alt="' . $locName . '" style="width:256px; display:block; margin-left:auto; margin-right:auto; margin-bottom:20px;">';
+				echo '<image src="images/' . $locName . '.jpg" alt="' . $locName . '" style="width:256px; display:block; margin-left:auto; margin-right:auto; margin-bottom:20px; border-style: solid; border-color:#ffffff;">';
 				echo '<div id="paraOne">';
 				//echo '<table>';
 				//echo '<tr><th colspan="2">' . $orgName . '</th></tr>';

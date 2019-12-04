@@ -22,7 +22,7 @@
 				
 				echo '<h1 align="center" id=headertext>' . $orgName . '</h1>';
 				echo '<div id="paraOne">';
-				echo '<img src="images/' . $sciName . '.jpg" alt="' . $orgName . '" style = "width:256px; height; 256px; margin-left: 150px; margin-bottom:20px; border-style: solid; bordor-color:#ffffff;">';
+				echo '<img src="images/' . $sciName . '.jpg" alt="' . $orgName . '" style = "width:256px; margin-left: auto; margin-right: auto; margin-bottom:20px; border-style: solid; border-color:#ffffff;">';
 				echo '<table>';
 				echo '<tr><th class="center darker" colspan="2">' . $orgName . '</th></tr>';
 				echo '<tr><td class="center dark">Scientific Name</td><td>' . $sciName . '</td></tr>';

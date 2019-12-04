@@ -152,7 +152,7 @@ function getOrganism($conn, $search) {
 		while($row = $result->fetch_assoc()) {
 			echo '<tr>';
 			echo "<td>" . $row["organismID"]. "</td>";
-			echo "<td>" . $row["orgName"]. "</td>";
+			echo "<td>" . "" . $row["orgName"]. "</a></td>";
 			echo "<td>" . $row["sciName"]. "</td>";
 			echo "<td>" . $row["orgType"]. "</td>";
 			echo '</tr>';
