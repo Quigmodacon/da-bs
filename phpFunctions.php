@@ -11,14 +11,21 @@ function show_organism($conn) {
 			
 			echo '<table border>';
 			echo '<thead><tr>';
-			echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>'.'<th>'."Scientific Name".'</th>'.'<th>'."Organism Type".'</th>';
+			if ($_SESSION['isAdmin']) {
+				echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>'.'<th>'."Scientific Name".'</th>'.'<th>'."Organism Type".'</th>';
+			}
+			else {
+				echo '<th>'."Name".'</th>'.'<th>'."Scientific Name".'</th>'.'<th>'."Organism Type".'</th>';
+			}
 			echo '</tr></thead>';
 			echo '<tbody>';
 
 			while($row = $result->fetch_assoc()) {
 				echo '<tr>';
-				echo "<td>" . $row["organismID"]. "</td>";
-				echo "<td>" . $row["orgName"]. "</td>";
+				if ($_SESSION['isAdmin']) {
+					echo "<td>" . $row["organismID"]. "</td>";
+				}
+				echo '<td><a href="genericOrganism.php?orgID=' . $row["organismID"] . '">' . $row["orgName"]. "</a></td>";
 				echo "<td>" . $row["sciName"]. "</td>";
 				echo "<td>" . $row["orgType"]. "</td>";
 				echo '</tr>';
