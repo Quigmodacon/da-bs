@@ -10,14 +10,14 @@ CREATE TABLE organism (
 DROP TABLE IF EXISTS location;
 CREATE TABLE location (
     locationID int AUTO_INCREMENT,
-    locName VARCHAR(30),
+    locName VARCHAR(256),
     PRIMARY KEY (locationID)
 );
 
 DROP TABLE IF EXISTS biome;
 CREATE TABLE biome (
     biomeID int AUTO_INCREMENT,
-    bioName VARCHAR(30),
+    bioName VARCHAR(256),
     PRIMARY KEY (biomeID)
 );
 
