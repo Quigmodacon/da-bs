@@ -9,8 +9,9 @@
                 <?php session_start(); ?>
 		<?php include 'nav.php'; ?>
 		<?php require 'database.php'; ?>
-		<?php include 'adminNav.php'; ?>
 		<?php include 'check_login.php'; ?>
+<?php if($_SESSION['isAdmin']) : ?>
+		<?php include 'adminNav.php'; ?>
 		<div>
 			<?php
 				include 'database.php';
@@ -82,5 +83,6 @@
 				</form>
 			</div>
 		</div>
+<?php endif ?>
 	</body>
 </html>

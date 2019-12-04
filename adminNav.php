@@ -9,7 +9,8 @@
 			echo '<div class="topnav">';
 			echo '<a href="insert.php">Insert</a>';
 			echo '<a href="delete.php">Delete</a>';
-			echo '<a href="update.php">Update User</a>';
+			echo '<a href="updateUser.php">Update User</a>';
+			echo '<a href="update.php">Update Linkage</a>';
 			echo '</div>';
 		}
 	}
