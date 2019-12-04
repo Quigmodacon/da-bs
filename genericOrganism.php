@@ -22,13 +22,13 @@
 				
 				echo '<h1 align="center" id=headertext>' . $orgName . '</h1>';
 				echo '<div id="paraOne">';
-				echo '<img src="images/' . $sciName . '.jpg" alt="' . $orgName . '">';
+				echo '<img src="images/' . $sciName . '.jpg" alt="' . $orgName . '" style = "width:256px; height; 256px; margin-left: 150px; margin-bottom:20px; border-style: solid; bordor-color:#ffffff;">';
 				echo '<table>';
 				echo '<tr><th class="center darker" colspan="2">' . $orgName . '</th></tr>';
 				echo '<tr><td class="center dark">Scientific Name</td><td>' . $sciName . '</td></tr>';
 				echo '<tr><td class="center dark">Organism Type</td><td class="center">' . $type . '</td></tr>';
 				echo '</table>';
-				echo '<h3 align="center">Where To Find?</h3>';
+				echo '<br> <h3 align="center">Where To Find?</h3>';
 	$sql->close();
 	$sql = $conn->prepare("SELECT locationID, locName FROM (SELECT location.locationID, location.locName, organism_location.organismID FROM location INNER JOIN organism_location ON location.locationID=organism_location.locationID) AS loc WHERE organismID = ?");
 	$sql->bind_param('i', $organismID);
@@ -45,7 +45,6 @@
 			}
 			echo '</tr></thead>';
 			echo '<tbody>';
-
 			while($sql->fetch()) {
 				echo '<tr>';
 				if($_SESSION['isAdmin']){
