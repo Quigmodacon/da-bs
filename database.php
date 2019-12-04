@@ -3,9 +3,9 @@
 // TODO: Edit this to fit the final database server
 
 $servername = "localhost";
-$username = "jhanse12";
-$password = "p6KE8fbo";
-$dbname = "jhanse12";
+$username = "test";
+$password = "test";
+$dbname = "environment";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_errno) {

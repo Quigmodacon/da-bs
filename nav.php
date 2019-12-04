@@ -3,6 +3,7 @@
 	<a href="organisms.php">Organisms</a>
 	<a href="biomes.php">Biomes</a>
 	<a href="locations.php">Locations</a>
+	<a href="favorites.php">Favorites</a>
 	<a href="about.php">About</a>
 
 	<div class="search-container">
