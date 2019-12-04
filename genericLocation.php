@@ -23,7 +23,7 @@
 				
 				echo '<h1 align="center" id=headertext>' . $locName . '</h1>';
 				echo '<div id="paraOne">';
-				echo '<image src="images/' . $locName . '" alt="' . $locName . '" style="width:256px; display:block; margin-left:auto; margin-right:auto; margin-bottom:20px;">';
+				echo '<image src="images/' . $locName . '.jpg" alt="' . $locName . '" style="width:256px; display:block; margin-left:auto; margin-right:auto; margin-bottom:20px;">';
 				echo '<div id="paraOne">';
 				//echo '<table>';
 				//echo '<tr><th colspan="2">' . $orgName . '</th></tr>';
@@ -72,8 +72,8 @@
 	$sql = $conn->prepare("SELECT organismID, orgName, sciName, orgType FROM (SELECT organism.organismID, organism.orgName, organism.sciName, organism.orgType FROM organism INNER JOIN organism_location ON organism.organismID = organism_location.organismID) AS org WHERE locationID = ?");
 	$sql->bind_param('i', $locID);
 	//$result = $conn->query($sql); // object oriented execution of query
-	$sql->bind_result($organismID, $orgName, $sciName, $orgType);
 		if ($sql->execute()) {
+			$sql->bind_result($organismID, $orgName, $sciName, $orgType);
 
 			echo '<table>';
 			echo '<thead class="darker center"><tr>';
