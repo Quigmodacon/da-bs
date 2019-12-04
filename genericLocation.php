@@ -62,14 +62,13 @@
 			
 			// output data of each row
 			
-			
 		} 
 		else {
 			echo "No Locations Found";
 		}
 				echo '<h3 align="center" style="margin-top:15px; color:white;">What Lives Here?</h3>';
 	$sql->close();
-	$sql = $conn->prepare("SELECT organismID, orgName, sciName, orgType FROM (SELECT organism.organismID, organism.orgName, organism.sciName, organism.orgType FROM organism INNER JOIN organism_location ON organism.organismID = organism_location.organismID) AS org WHERE locationID = ?");
+	$sql = $conn->prepare("SELECT organismID, orgName, sciName, orgType FROM (SELECT organism.organismID, organism.orgName, organism.sciName, organism.orgType, organism_location.locationID FROM organism INNER JOIN organism_location ON organism.organismID = organism_location.organismID) AS org WHERE locationID = ?");
 	$sql->bind_param('i', $locID);
 	//$result = $conn->query($sql); // object oriented execution of query
 		if ($sql->execute()) {
