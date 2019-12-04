@@ -11,7 +11,7 @@
 			<button type="submit" name="go" id="go">GO</button>
 		</form>
 	</div>
-	<?php if ($_SESSION["logInBool"]): ?>
+	<?php if ($_SESSION["logInBool"] ?? false): ?>
 	<a href="account.php" class="account-button">Account</a>
 	<a href="logout.php" class="account-button">Logout</a>
 	<?php else: ?>

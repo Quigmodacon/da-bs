@@ -6,7 +6,7 @@
 	</head>
 	<body id="hellspawn">
 		<?php session_start(); ?>
-		<?php $loggedIn = $_SESSION['logInBool'] ?>
+		<?php $loggedIn = $_SESSION['logInBool'] ?? false ?>
 		<!-- header -->	
 		<?php include 'nav.php';?>		
 
@@ -20,7 +20,7 @@
 				
 				$_SESSION['logInBool'] = true;
 				// Save the username to be used on other pages
-				$_SESSION['username'] = $username;
+				$_SESSION['username'] = $_POST["username"];
 				// Redirect to the home page
 				header("Location: home.php");
 			}

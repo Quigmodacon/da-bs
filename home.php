@@ -6,7 +6,7 @@
 	</head>
 	<body id="hellspawn">
 		<?php session_start(); ?>
-		<?php $loggedIn = $_SESSION['logInBool'] ?>
+		<?php $loggedIn = $_SESSION['logInBool'] ?? false ?>
 		<!-- header -->	
 		<?php include 'nav.php';?>		
                 <?php include 'check_login.php'; ?>
