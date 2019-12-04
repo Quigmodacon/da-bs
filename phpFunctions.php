@@ -152,7 +152,7 @@ function getOrganism($conn, $search) {
 		while($row = $result->fetch_assoc()) {
 			echo '<tr>';
 			echo "<td>" . $row["organismID"]. "</td>";
-			echo "<td>" . "" . $row["orgName"]. "</a></td>";
+			echo "<td><a" . ' href="genericOrganism.php?orgID=' . $row["organismID"] . '">' . $row["orgName"]. "</a></td>";
 			echo "<td>" . $row["sciName"]. "</td>";
 			echo "<td>" . $row["orgType"]. "</td>";
 			echo '</tr>';
@@ -195,7 +195,7 @@ function getBiome($conn, $search) {
 		while($row = $result->fetch_assoc()) {
 			echo '<tr>';
 			echo "<td>" . $row["biomeID"]. "</td>";
-			echo "<td>" . $row["bioName"]. "</td>";
+			echo '<td><a href="genericBiome.php?bioID=' . $row["biomeID"] . '">' . $row["bioName"]. "</a></td>";
 			echo '</tr>';
 		}
 			
@@ -235,8 +235,8 @@ function getLocation($conn, $search) {
 
 		while($row = $result->fetch_assoc()) {
 			echo '<tr>';
-			echo "<td>" . $row["locationID"]. "</td>";
-			echo "<td>" . $row["locName"]. "</td>";
+			echo '<td>' . $row["locationID"]. "</td>";
+			echo '<td><a href="genericLocation.php?locID=' . $row["locationID"] . '">' . $row["locName"]. "</a></td>";
 			echo '</tr>';
 		}
 			
