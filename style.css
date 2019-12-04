@@ -283,6 +283,11 @@ main {
     background: rgba(0, 0, 0, 0.5);
 }
 
+#paraOne table a {
+    color: #FFF;
+    text-shadow: 0 0 5px #09F;
+}
+
 #paraOne form {
     color: #FFF;
     text-shadow: 0 0 5px #000;
