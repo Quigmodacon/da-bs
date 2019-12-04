@@ -14,26 +14,25 @@
 		<main class="container" role="main">
 		<div>
 			<?php include 'database.php';
-				$orgID = $_GET['orgID'];
-				$sql = $conn->prepare('SELECT * FROM organism WHERE organismID = ?');
-				$sql->bind_param('i', $orgID);
+				$bioID = $_GET['bioID'];
+				$sql = $conn->prepare('SELECT * FROM biome WHERE biomeID = ?');
+				$sql->bind_param('i', $bioID);
 				$sql->execute();
-				$sql->bind_result($organismID, $orgName, $sciName, $type);
+				$sql->bind_result($biomeID, $bioName);
 				$sql->fetch();
-				
-				echo '<h1 align="center" id=headertext>' . $orgName . '</h1>';
+				echo '<h1 align="center" id=headertext>' . $bioName . '</h1>';
 				echo '<div id="paraOne">';
-				echo '<image src="images/' . $sciName . '" alt="' . $orgName . '" style="width:256px; display:block; margin-left:auto; margin-right:auto; margin-bottom:20px;">';
+				echo '<image src="images/' . $bioName . '" alt="' . $bioName . '" style="width:256px; display:block; margin-left:auto; margin-right:auto; margin-bottom:20px;">';
 				echo '<div id="paraOne">';
-				echo '<table>';
-				echo '<tr><th colspan="2">' . $orgName . '</th></tr>';
-				echo '<tr><td style="padding:15px;">Scientific Name</td><td style="padding:15px;">' . $sciName . '</td></tr>';
-				echo '<tr><td style="padding:15px;">Organism Type</td><td style="padding:15px;">' . $type . '</td></tr>';
-				echo '</table>';
-				echo '<h3 align="center" style="margin-top:15px; color:white;">Where To Find?</h3>';
+				//echo '<table>';
+				//echo '<tr><th colspan="2">' . $orgName . '</th></tr>';
+				//echo '<tr><td style="padding:15px;">Scientific Name</td><td style="padding:15px;">' . $sciName . '</td></tr>';
+				//echo '<tr><td style="padding:15px;">Organism Type</td><td style="padding:15px;">' . $type . '</td></tr>';
+				//echo '</table>';
+				echo '<h3 align="center" style="margin-top:15px; color:white;">Where are These?</h3>';
 	$sql->close();
-	$sql = $conn->prepare("SELECT locationID, locName FROM (SELECT location.locationID, location.locName, organism_location.organismID FROM location INNER JOIN organism_location ON location.locationID=organism_location.locationID) AS loc WHERE organismID = ?");
-	$sql->bind_param('i', $organismID);
+	$sql = $conn->prepare("SELECT locationID, locName FROM (SELECT location.locationID, location.locName, location_biome.biomeID FROM location INNER JOIN location_biome ON location.locationID=location_biome.locationID) AS bio WHERE biomeID = ?");
+	$sql->bind_param('i', $biomeID);
 	//$result = $conn->query($sql); // object oriented execution of query
 		if ($sql->execute()) {
 			$sql->bind_result($locationID, $locName);

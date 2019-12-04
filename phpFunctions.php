@@ -69,7 +69,7 @@ function show_biome($conn) {
 				if($_SESSION['isAdmin']){
 					echo "<td class='center'>" . $row["biomeID"]. "</td>";
 				}
-				echo '<td><a href="genericBiome.php?orgID=' . $row["biomeID"] . '">' . $row["bioName"]. "</a></td>";
+				echo '<td><a href="genericBiome.php?bioID=' . $row["biomeID"] . '">' . $row["bioName"]. "</a></td>";
 				echo '</tr>';
 			}
 			
@@ -110,7 +110,7 @@ function show_location($conn) {
 				if($_SESSION['isAdmin']){
 					echo "<td class='center'>" . $row["locationID"]. "</td>";
 				}
-				echo '<td><a href="genericLocation.php?orgID=' . $row["locationID"] . '">' . $row["locName"]. "</a></td>";
+				echo '<td><a href="genericLocation.php?locID=' . $row["locationID"] . '">' . $row["locName"]. "</a></td>";
 				echo '</tr>';
 			}
 			
