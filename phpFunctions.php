@@ -55,14 +55,21 @@ function show_biome($conn) {
 			
 			echo '<table border>';
 			echo '<thead><tr>';
-			echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>';
+			if($_SESSION['isAdmin']){
+				echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>';
+			}
+			else{
+				echo '<th>'."Name".'</th>';
+			}
 			echo '</tr></thead>';
 			echo '<tbody>';
 
 			while($row = $result->fetch_assoc()) {
 				echo '<tr>';
-				echo "<td>" . $row["biomeID"]. "</td>";
-				echo "<td>" . $row["bioName"]. "</td>";
+				if($_SESSION['isAdmin']){
+					echo "<td>" . $row["biomeID"]. "</td>";
+				}
+				echo '<td><a href="genericBiome.php?orgID=' . $row["biomeID"] . '">' . $row["bioName"]. "</a></td>";
 				echo '</tr>';
 			}
 			
@@ -90,14 +97,21 @@ function show_location($conn) {
 			
 			echo '<table border>';
 			echo '<thead><tr>';
-			echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>';
+			if($_SESSION['isAdmin']){
+				echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>';
+			}
+			else {
+				echo '<th>Name</th>';
+			}
 			echo '</tr></thead>';
 			echo '<tbody>';
 
 			while($row = $result->fetch_assoc()) {
 				echo '<tr>';
-				echo "<td>" . $row["locationID"]. "</td>";
-				echo "<td>" . $row["locName"]. "</td>";
+				if($_SESSION['isAdmin']){
+					echo "<td>" . $row["locationID"]. "</td>";
+				}
+				echo '<td><a href="genericLocation.php?orgID=' . $row["locationID"] . '">' . $row["locName"]. "</a></td>";
 				echo '</tr>';
 			}
 			
