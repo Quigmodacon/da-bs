@@ -9,18 +9,18 @@ function show_organism($conn) {
 
 		if ($result->num_rows > 0) {
 			
-			echo '<table border>';
-			echo '<thead><tr>';
+			echo '<table>';
+			echo '<thead class="darker center"><tr>';
 			echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>'.'<th>'."Scientific Name".'</th>'.'<th>'."Organism Type".'</th>';
 			echo '</tr></thead>';
 			echo '<tbody>';
 
 			while($row = $result->fetch_assoc()) {
 				echo '<tr>';
-				echo "<td>" . $row["organismID"]. "</td>";
+				echo "<td class='center'>" . $row["organismID"]. "</td>";
 				echo "<td>" . $row["orgName"]. "</td>";
 				echo "<td>" . $row["sciName"]. "</td>";
-				echo "<td>" . $row["orgType"]. "</td>";
+				echo "<td class='center'>" . $row["orgType"]. "</td>";
 				echo '</tr>';
 			}
 			
@@ -46,15 +46,15 @@ function show_biome($conn) {
 
 		if ($result->num_rows > 0) {
 			
-			echo '<table border>';
-			echo '<thead><tr>';
+			echo '<table>';
+			echo '<thead class="darker center"><tr>';
 			echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>';
 			echo '</tr></thead>';
 			echo '<tbody>';
 
 			while($row = $result->fetch_assoc()) {
 				echo '<tr>';
-				echo "<td>" . $row["biomeID"]. "</td>";
+				echo "<td class='center'>" . $row["biomeID"]. "</td>";
 				echo "<td>" . $row["bioName"]. "</td>";
 				echo '</tr>';
 			}
@@ -81,15 +81,15 @@ function show_location($conn) {
 
 		if ($result->num_rows > 0) {
 			
-			echo '<table border>';
-			echo '<thead><tr>';
+			echo '<table>';
+			echo '<thead class="darker center"><tr>';
 			echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>';
 			echo '</tr></thead>';
 			echo '<tbody>';
 
 			while($row = $result->fetch_assoc()) {
 				echo '<tr>';
-				echo "<td>" . $row["locationID"]. "</td>";
+				echo "<td class='center'>" . $row["locationID"]. "</td>";
 				echo "<td>" . $row["locName"]. "</td>";
 				echo '</tr>';
 			}

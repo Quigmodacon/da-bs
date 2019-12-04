@@ -11,7 +11,7 @@ h1,h2,h3,p {
 	padding:0;
 	margin:0;
 }
-
+/*
 h1 {
 	background-color: #daad86;
 	border-style: solid;
@@ -22,7 +22,7 @@ h1 {
 	margin-left: 30px;
 	margin-right: 30px;
 }
-
+*/
 .linkList th {
 	color: white;
 }
@@ -35,7 +35,7 @@ h1 {
 .linkList a:hover {
 	color: grey;
 }
-
+/*
 #paraOne {
 	margin-left: auto;
 	margin-right: auto;
@@ -53,14 +53,14 @@ h1 {
 	font-size: 20px;
 	display: block;
 }
-
+*/
 #sFail {
 	font-size: 20px;
 	margin-top: 10px;
 	color: black;
 	text-align: center;
 }
-
+/*
 #paraOne table {
 	text-align: center;
 	margin-left: auto;
@@ -73,7 +73,7 @@ h1 {
 	background-color: #daad86;
 	font-size: 20px;
 }
-
+*/
 /* Add a black Background to nav bar */
 .topnav {
 	margin: 0px;
@@ -195,4 +195,131 @@ h1 {
 }
 .table-border {
 	border-collapse: collapse;
+}
+
+/*----------------------*/
+/* Styled by Haocheng */
+/*----------------------*/
+.bold {
+    font-weight: bold;
+}
+.center {
+    text-align: center;
+}
+
+#hellspawn {
+	background-image: url(images/background.jpg);
+    background-size: cover;
+}
+
+nav {
+    background: rgba(75, 39, 4, 0.8);
+}
+
+.search_input {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.search_input::placeholder {
+    color: #FFF;
+}
+
+.growspan {
+    flex: 1;
+}
+
+main {
+    margin-top: 20px;
+    padding: 20px 20px 40px;
+    background: rgba(255, 200, 150, 0.45);
+    border-radius: 1rem;
+}
+
+#headertext {
+    text-align: center;
+	font-size: 48px;
+    color: #FFF;
+    text-shadow: 0 0 5px #000;
+}
+
+.welcome {
+    margin-top: 15px;
+    text-align: center;
+	font-size: 20px;
+    color: #FFF;
+    text-shadow: 0 0 5px #000;
+}
+
+#paraOne {
+    margin-top: 25px;
+	width: 100%;
+    padding: 0 25%;
+}
+
+#paraOne p {
+	font-size: 16px;
+    color: #FFF;
+    text-shadow: 0 0 5px #000;
+}
+
+#paraOne table, #paraOne table th, #paraOne table td {
+    border: 1px solid #FFF;
+}
+
+#paraOne table {
+    margin: 0 auto;
+	border-collapse: collapse;
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 8px 10px rgba(127, 70, 20, 0.3);
+    text-shadow: 0 0 5px #000;
+    color: #FFF;
+}
+
+#paraOne table td {
+    padding: 10px 20px;
+}
+
+#paraOne table .darker {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#paraOne form {
+    color: #FFF;
+    text-shadow: 0 0 5px #000;
+}
+
+#paraOne form .form-group {
+    padding: 3px 0;
+}
+
+#paraOne form input {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: #FFF;
+    color: #FFF;
+}
+
+#paraOne form button {
+    margin-top: 10px;
+    color: #FFF;
+    background: rgba(0, 100, 255, 0.2);
+}
+
+#paraOne form button:hover {
+    background: rgba(0, 100, 255, 0.4);
+}
+
+#logswitch {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+#logswitch a {
+    margin-left: 5px;
+    text-decoration: none;
+    color: #36D;
+    text-shadow: 0 0 5px #FFF;
+}
+
+#logswitch a:hover {
+    color: #D63;
 }
