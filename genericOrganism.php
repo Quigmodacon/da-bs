@@ -12,7 +12,6 @@
 		<?php include 'nav.php';?>		
                 <?php include 'check_login.php'; ?>
 		<main class="container" role="main">
-		<div>
 			<?php include 'database.php';
 				$orgID = $_GET['orgID'];
 				$sql = $conn->prepare('SELECT * FROM organism WHERE organismID = ?');
@@ -23,27 +22,26 @@
 				
 				echo '<h1 align="center" id=headertext>' . $orgName . '</h1>';
 				echo '<div id="paraOne">';
-				echo '<image src="images/' . $sciName . '" alt="' . $orgName . '" style="width:256px; display:block; margin-left:auto; margin-right:auto; margin-bottom:20px;">';
-				echo '<div id="paraOne">';
+				echo '<img src="images/' . $sciName . '.jpg" alt="' . $orgName . '">';
 				echo '<table>';
-				echo '<tr><th colspan="2">' . $orgName . '</th></tr>';
-				echo '<tr><td style="padding:15px;">Scientific Name</td><td style="padding:15px;">' . $sciName . '</td></tr>';
-				echo '<tr><td style="padding:15px;">Organism Type</td><td style="padding:15px;">' . $type . '</td></tr>';
+				echo '<tr><th class="center darker" colspan="2">' . $orgName . '</th></tr>';
+				echo '<tr><td class="center dark">Scientific Name</td><td>' . $sciName . '</td></tr>';
+				echo '<tr><td class="center dark">Organism Type</td><td class="center">' . $type . '</td></tr>';
 				echo '</table>';
-				echo '<h3 align="center" style="margin-top:15px; color:white;">Where To Find?</h3>';
+				echo '<h3 align="center">Where To Find?</h3>';
 	$sql->close();
 	$sql = $conn->prepare("SELECT locationID, locName FROM (SELECT location.locationID, location.locName, organism_location.organismID FROM location INNER JOIN organism_location ON location.locationID=organism_location.locationID) AS loc WHERE organismID = ?");
 	$sql->bind_param('i', $organismID);
 	//$result = $conn->query($sql); // object oriented execution of query
 		if ($sql->execute()) {
 			$sql->bind_result($locationID, $locName);
-			echo '<table border>';
+			echo '<table>';
 			echo '<thead><tr>';
 			if($_SESSION['isAdmin']){
-				echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>';
+				echo '<th class="center darker">'."ID".'</th>'.'<th class="center darker">'."Name".'</th>';
 			}
 			else {
-				echo '<th>Name</th>';
+				echo '<th class="center darker">Name</th>';
 			}
 			echo '</tr></thead>';
 			echo '<tbody>';
@@ -69,10 +67,7 @@
 		}
 	//$conn->close();
 				echo '</div>';
-				echo '</div>';
 			?>
-				
-		</div>
 		</main>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
