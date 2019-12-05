@@ -15,7 +15,7 @@
 	        <?php include 'check_login.php'; ?>
 		<main class="container" role="main">
 		<div>
-			<h1 align="center">Favorites</h1>
+			<h1 id="headertext" align="center">Favorites</h1>
 			<!-- rest of body -->
 			<?php
 				$userID = get_current_userID($conn, $_SESSION['username']);
