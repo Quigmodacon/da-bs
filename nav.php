@@ -34,6 +34,9 @@
           <li class="nav-item">
             <a class="nav-link" href="locations.php">Locations</a>
           </li>
+			<li class="nav-item">
+				<a class="nav-link" href="favorites.php">Favorites</a>
+			</li>
           <li class="nav-item">
             <a class="nav-link" href="about.php">About</a>
           </li>
