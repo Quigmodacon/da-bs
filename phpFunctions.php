@@ -1,13 +1,11 @@
 <?php
 
-function show_organism($conn) {
+function show_organism($conn, $extra = '') {
 
 	//include "dbconnect.php";
 
-	$sql = "SELECT organismID, orgName, sciName, orgType, GROUP_CONCAT(locationID) AS locationIDs, GROUP_CONCAT(locName) AS locNames FROM organism NATURAL JOIN organism_location NATURAL JOIN location GROUP BY organismID";
+    $sql = "SELECT organismID, orgName, sciName, orgType, GROUP_CONCAT(locationID) AS locationIDs, GROUP_CONCAT(locName) AS locNames FROM organism NATURAL JOIN organism_location NATURAL JOIN location ".$extra." GROUP BY organismID";
 	$result = $conn->query($sql); // object oriented execution of query
-
-		if ($result->num_rows > 0) {
 
 			echo '<table>';
 			echo '<thead class="darker center"><tr>';
@@ -42,26 +40,16 @@ function show_organism($conn) {
 			
 			echo '</tbody>';
 			echo '</table>';
-			
-			// output data of each row
-			
-			
-		} 
-		else {
-			echo "No Organisms Found";
-		}
 	//$conn->close();
 }
 
-function show_biome($conn) {
+function show_biome($conn, $extra = '') {
 
 	//include "dbconnect.php";
 
-	$sql = "SELECT biomeID, bioName FROM biome";
+	$sql = "SELECT biomeID, bioName FROM biome ".$extra."";
 	$result = $conn->query($sql); // object oriented execution of query
 
-		if ($result->num_rows > 0) {
-			
 			echo '<table>';
 			echo '<thead class="darker center"><tr>';
 			if($_SESSION['isAdmin']){
@@ -85,24 +73,16 @@ function show_biome($conn) {
 			echo '</tbody>';
 			echo '</table>';
 			
-			// output data of each row
-			
-			
-		} 
-		else {
-			echo "No Biomes Found";
-		}
 	//$conn->close();
 }
 
-function show_location($conn) {
+function show_location($conn, $extra = '') {
 
 	//include "dbconnect.php";
 
-	$sql = "SELECT locationID, locName, GROUP_CONCAT(biomeID) AS biomeIDs, GROUP_CONCAT(bioName) AS bioNames FROM location NATURAL JOIN location_biome NATURAL JOIN biome GROUP BY locationID";
+	$sql = "SELECT locationID, locName, GROUP_CONCAT(biomeID) AS biomeIDs, GROUP_CONCAT(bioName) AS bioNames FROM location NATURAL JOIN location_biome NATURAL JOIN biome ".$extra." GROUP BY locationID";
 	$result = $conn->query($sql); // object oriented execution of query
 
-		if ($result->num_rows > 0) {
 			echo '<table>';
 			echo '<thead class="darker center"><tr>';
 			if($_SESSION['isAdmin']){
@@ -135,13 +115,6 @@ function show_location($conn) {
 			echo '</tbody>';
 			echo '</table>';
 			
-			// output data of each row
-			
-			
-		} 
-		else {
-			echo "No Locations Found";
-		}
 	//$conn->close();
 }
 
@@ -353,6 +326,36 @@ function show_organism_select_list($conn, $name) {
 		}
 		echo '</select>';
 	} 
+}
+
+// check if liked in a target type(organism/biome/location) with certain ID, returns the favorite ID
+function isLiked($conn, $userID, $target, $targetID) {
+    $sql = $conn->prepare('SELECT favoriteID FROM favorite NATURAL JOIN favorite_'.$target.' WHERE userID = ? AND '.$target.'ID = ?');
+    $sql->bind_param('ii', $userID, $targetID);
+    $sql->execute();
+    $result = $sql->get_result();
+    if ($result->num_rows > 0)
+        $result = $result->fetch_assoc()['favoriteID'];
+    else
+        $result = 0;
+    $sql->close();
+	return $result;
+}
+
+// liked it
+function likeIt($conn, $userID, $target, $targetID) {
+    $query = '';
+    $query .= 'INSERT INTO favorite(userID) VALUES ('.$userID.');';
+    $query .= 'INSERT INTO favorite_'.$target.' VALUES (LAST_INSERT_ID(), '.$targetID.');';
+    $sql = $conn->multi_query($query);
+}
+
+// unliked it
+function unlikeIt($conn, $favID, $target) {
+    $query = '';
+    $query .= 'DELETE FROM favorite_'.$target.' WHERE favoriteID = '.$favID.';';
+    $query .= 'DELETE FROM favorite WHERE favoriteID = '.$favID.';';
+    $sql = $conn->multi_query($query);
 }
 
 ?>

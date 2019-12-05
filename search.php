@@ -1,4 +1,4 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Jonathan Hansen</title>
@@ -7,24 +7,35 @@
 	</head>
 	<body id="hellspawn">
 		<?php session_start(); ?>
-		<?php $loggedIn = $_SESSION['logInBool']; ?>
+		<?php $loggedIn = $_SESSION['logInBool'] ?>
 		<!-- header -->	
-		<?php include 'nav.php'; ?>
-		<?php require 'phpFunctions.php'; ?>
-		<?php require 'database.php'; ?>
-        <?php include 'check_login.php'; ?>
+		<?php include 'nav.php';?>
+		<?php require 'phpFunctions.php'?>
+		<?php require 'database.php' ?>
+	    <?php include 'check_login.php'; ?>
+        <?php
+            $search = $_GET['search'];
+        ?>
 		<main class="container" role="main">
 		<div>
-			<h1 id="headertext">Search Results</h1>
+			<h1 id="headertext" align="center">Search Results for '<?php echo $search; ?>'</h1>
 			<!-- rest of body -->
 			<div id="paraOne">
-				<?php
-        			$search = $_GET['search'];
-					getOrganism($conn, $search); 
-					getBiome($conn, $search);
-					getLocation($conn, $search);
-				?>
-			</div>
+			<h3>Organism</h3>
+			<?php
+				$userID = get_current_userID($conn, $_SESSION['username']);
+                show_organism($conn, "WHERE organismID LIKE CONCAT('%', '".$search."', '%') OR orgName LIKE CONCAT('%', '".$search."', '%') OR sciName LIKE CONCAT('%', '".$search."', '%') OR orgType LIKE CONCAT('%', '".$search."', '%')");
+			?>
+			<h3>Biome</h3>
+			<?php
+				$userID = get_current_userID($conn, $_SESSION['username']);
+                show_biome($conn, "WHERE biomeID LIKE CONCAT('%', '".$search."', '%') OR bioName LIKE CONCAT('%', '".$search."', '%')");
+			?>
+			<h3>Location</h3>
+			<?php
+				$userID = get_current_userID($conn, $_SESSION['username']);
+                show_location($conn, "WHERE locationID LIKE CONCAT('%', '".$search."', '%') OR locName LIKE CONCAT('%', '".$search."', '%')");
+			?>
 		</div>
 		</main>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

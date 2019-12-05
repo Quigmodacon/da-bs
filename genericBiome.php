@@ -14,39 +14,51 @@
 		<main class="container" role="main">
 		<div>
 			<?php include 'database.php';
+                include 'phpFunctions.php';
 				$bioID = $_GET['bioID'];
 				$sql = $conn->prepare('SELECT * FROM biome WHERE biomeID = ?');
 				$sql->bind_param('i', $bioID);
 				$sql->execute();
 				$sql->bind_result($biomeID, $bioName);
 				$sql->fetch();
-				echo '<h1 align="center" id=headertext>' . $bioName . '</h1>';
+                $sql->close();
+				echo '<h1 id="headertext">' . $bioName . '</h1>';
+                echo '<form id="likeit" method="post" action="like_biome.php">';
+                if (isLiked($conn, get_current_userID($conn, $_SESSION['username']), 'biome', $bioID))
+                {
+                    $btnclass = ' liked';
+                    $btntext = 'Liked!';
+                }
+                else
+                {
+                    $btnclass = '';
+                    $btntext = 'Like it!';
+                }
+				echo '<button type="submit" name="bioID" value="'.$bioID.'" class="btn'.$btnclass.'">'.$btntext.'</button>';
+                echo '</form>';
 				echo '<div id="paraOne">';
 				echo '<image src="images/' . $bioName . '.jpg" alt="' . $bioName . '" style="width:256px; display:block; margin-left:auto; margin-right:auto; margin-bottom:20px; border-style: solid; border-color:#ffffff;">';
-				echo '<div id="paraOne">';
 				//echo '<table>';
 				//echo '<tr><th colspan="2">' . $orgName . '</th></tr>';
 				//echo '<tr><td style="padding:15px;">Scientific Name</td><td style="padding:15px;">' . $sciName . '</td></tr>';
 				//echo '<tr><td style="padding:15px;">Organism Type</td><td style="padding:15px;">' . $type . '</td></tr>';
 				//echo '</table>';
-				echo '<h3 align="center" style="margin-top:15px; color:white;">Where are These?</h3>';
-	$sql->close();
+				echo '<h3>Where are These?</h3>';
 	$sql = $conn->prepare("SELECT locationID, locName FROM (SELECT location.locationID, location.locName, location_biome.biomeID FROM location INNER JOIN location_biome ON location.locationID=location_biome.locationID) AS bio WHERE biomeID = ?");
 	$sql->bind_param('i', $biomeID);
 	//$result = $conn->query($sql); // object oriented execution of query
 		if ($sql->execute()) {
 			$sql->bind_result($locationID, $locName);
-			echo '<table border>';
+			echo '<table>';
 			echo '<thead><tr>';
 			if($_SESSION['isAdmin']){
-				echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>';
+				echo '<th class="center darker">'."ID".'</th>'.'<th class="center darker">'."Name".'</th>';
 			}
 			else {
-				echo '<th>Name</th>';
+				echo '<th class="center darker">Name</th>';
 			}
 			echo '</tr></thead>';
 			echo '<tbody>';
-
 			while($sql->fetch()) {
 				echo '<tr>';
 				if($_SESSION['isAdmin']){

@@ -13,14 +13,29 @@
                 <?php include 'check_login.php'; ?>
 		<main class="container" role="main">
 			<?php include 'database.php';
+                include 'phpFunctions.php';
 				$orgID = $_GET['orgID'];
 				$sql = $conn->prepare('SELECT * FROM organism WHERE organismID = ?');
 				$sql->bind_param('i', $orgID);
 				$sql->execute();
 				$sql->bind_result($organismID, $orgName, $sciName, $type);
 				$sql->fetch();
+                $sql->close();
 				
-				echo '<h1 align="center" id=headertext>' . $orgName . '</h1>';
+				echo '<h1 id="headertext">' . $orgName . '</h1>';
+                echo '<form id="likeit" method="post" action="like_organism.php">';
+                if (isLiked($conn, get_current_userID($conn, $_SESSION['username']), 'organism', $orgID))
+                {
+                    $btnclass = ' liked';
+                    $btntext = 'Liked!';
+                }
+                else
+                {
+                    $btnclass = '';
+                    $btntext = 'Like it!';
+                }
+				echo '<button type="submit" name="orgID" value="'.$orgID.'" class="btn'.$btnclass.'">'.$btntext.'</button>';
+                echo '</form>';
 				echo '<div id="paraOne">';
 				echo '<img src="images/' . $sciName . '.jpg" alt="' . $orgName . '" style = "width:256px; margin-left: auto; margin-right: auto; margin-bottom:20px; border-style: solid; border-color:#ffffff;">';
 				echo '<table>';
@@ -29,7 +44,6 @@
 				echo '<tr><td class="center dark">Organism Type</td><td class="center">' . $type . '</td></tr>';
 				echo '</table>';
 				echo '<br> <h3 align="center">Where To Find?</h3>';
-	$sql->close();
 	$sql = $conn->prepare("SELECT locationID, locName FROM (SELECT location.locationID, location.locName, organism_location.organismID FROM location INNER JOIN organism_location ON location.locationID=organism_location.locationID) AS loc WHERE organismID = ?");
 	$sql->bind_param('i', $organismID);
 	//$result = $conn->query($sql); // object oriented execution of query
