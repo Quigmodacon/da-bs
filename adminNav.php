@@ -6,12 +6,26 @@
 	$sql->bind_result($isAdmin);
 	if($sql->fetch()) {
 		if($isAdmin > 0) {
-			echo '<div class="topnav">';
-			echo '<a href="insert.php">Insert</a>';
-			echo '<a href="delete.php">Delete</a>';
-			echo '<a href="updateUser.php">Update User</a>';
-			echo '<a href="update.php">Update Linkage</a>';
-			echo '</div>';
-		}
-	}
+            ?>
+    <nav class="adminnavbar navbar navbar-expand-lg navbar-dark bg-gradient-primary">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav_page navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="insert.php">Insert</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="delete.php">Delete</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="updateUser.php">Update User</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="update.php">Update Linkage</a>
+              </li>
+            </ul>
+          </div>
+    </nav>
+            <?php
+            }
+        }
 ?>
