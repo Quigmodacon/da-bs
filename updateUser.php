@@ -17,32 +17,41 @@
 		<div>
 			<?php
 				include 'database.php';
-				if ( isset($_POST['username']) && isset($_POST['isAdmin'])) {
-					$uername = $_POST['username'];
+                if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                    // nothing
+                }
+				else if (!empty($_POST['username']) && is_numeric($_POST['isAdmin'])) {
+					$username = $_POST['username'];
 					$isAdmin = $_POST['isAdmin'];
 					$sql = $conn->prepare("UPDATE user SET isAdmin = ? WHERE username = ?");	
 					$sql->bind_param('is', $isAdmin, $username);
-					$sql->execute();
-				}	 
+					$b = $sql->execute();
+					echo '<p class="message success">Success</p>';
+				}
+				else {
+					echo '<p class="message error">Not enough information</p>';
+				}
 			?>
-			<h1 align="center">Update</h1>
+			<h1>Update</h1>
 			<!-- rest of body -->
 			<div id="paraOne">
-				<h3 align="center">Update User</h3>
-                <form method="post" class="main-form" action="">
-					<div class="input-row">
-						<label for="username">Username</label>
-						<input id="username" name="username" type="text">
-					</div>
-					<div class="input-row">
-						<label for="isAdmin">Has Admin Privileges</label>
-						<select id="isAdmin" name="isAdmin" style="font-size: 20px;">
+				<h3>Update User</h3>
+                <form method="post" class="main-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="isAdmin">Has Admin Privileges</label>
+                        </div>
+                        <select class="custom-select" id="isAdmin" name="isAdmin">
 							<option value="0">No</option>
 							<option value="1">Yes</option>
-						</select>
-					</div>
-					<input type="submit" value="Update" style="font-size: 20px;">
-				</form>
+                        </select>
+                    </div>
+                    <button type="submit" value="Delete" class="btn btn-outline-light">Submit</button>
+                </form>
 			</div>
 		</div>
 <?php endif ?>

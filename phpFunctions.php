@@ -4,7 +4,7 @@ function show_organism($conn) {
 
 	//include "dbconnect.php";
 
-	$sql = "SELECT organismID, orgName, sciName, orgType FROM organism";
+	$sql = "SELECT organismID, orgName, sciName, orgType, GROUP_CONCAT(locationID) AS locationIDs, GROUP_CONCAT(locName) AS locNames FROM organism NATURAL JOIN organism_location NATURAL JOIN location GROUP BY organismID";
 	$result = $conn->query($sql); // object oriented execution of query
 
 		if ($result->num_rows > 0) {
@@ -12,10 +12,10 @@ function show_organism($conn) {
 			echo '<table>';
 			echo '<thead class="darker center"><tr>';
 			if ($_SESSION['isAdmin']) {
-				echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>'.'<th>'."Scientific Name".'</th>'.'<th>'."Organism Type".'</th>';
+				echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>'.'<th>'."Scientific Name".'</th>'.'<th>'."Organism Type".'</th>'.'<th>'."Locations".'</th>';
 			}
 			else {
-				echo '<th>'."Name".'</th>'.'<th>'."Scientific Name".'</th>'.'<th>'."Organism Type".'</th>';
+				echo '<th>'."Name".'</th>'.'<th>'."Scientific Name".'</th>'.'<th>'."Organism Type".'</th>'.'<th>'."Locations".'</th>';
 			}
 			echo '</tr></thead>';
 			echo '<tbody>';
@@ -28,6 +28,15 @@ function show_organism($conn) {
 				echo '<td><a href="genericOrganism.php?orgID=' . $row["organismID"] . '">' . $row["orgName"]. "</a></td>";
 				echo "<td>" . $row["sciName"]. "</td>";
 				echo "<td class='center'>" . $row["orgType"]. "</td>";
+                $idArray = explode(',', $row["locationIDs"]);
+                $nameArray = explode(',', $row["locNames"]);
+				echo "<td class='nowrap'>";
+                for ($i = 0; $i < count($idArray); $i++) {
+                    if ($i > 0)
+                        echo '<br>';
+                    echo '<a href="genericLocation.php?locID=' . $idArray[$i] . '">' . $nameArray[$i]. '</a>';
+                }
+                echo "</td>";
 				echo '</tr>';
 			}
 			
@@ -90,17 +99,17 @@ function show_location($conn) {
 
 	//include "dbconnect.php";
 
-	$sql = "SELECT locationID, locName FROM location";
+	$sql = "SELECT locationID, locName, GROUP_CONCAT(biomeID) AS biomeIDs, GROUP_CONCAT(bioName) AS bioNames FROM location NATURAL JOIN location_biome NATURAL JOIN biome GROUP BY locationID";
 	$result = $conn->query($sql); // object oriented execution of query
 
 		if ($result->num_rows > 0) {
 			echo '<table>';
 			echo '<thead class="darker center"><tr>';
 			if($_SESSION['isAdmin']){
-				echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>';
+				echo '<th>'."ID".'</th>'.'<th>'."Name".'</th>'.'<th>'."Biome".'</th>';
 			}
 			else {
-				echo '<th>Name</th>';
+				echo '<th>Name</th>'.'<th>'."Name".'</th>';
 			}
 			echo '</tr></thead>';
 			echo '<tbody>';
@@ -111,6 +120,15 @@ function show_location($conn) {
 					echo "<td class='center'>" . $row["locationID"]. "</td>";
 				}
 				echo '<td><a href="genericLocation.php?locID=' . $row["locationID"] . '">' . $row["locName"]. "</a></td>";
+                $idArray = explode(',', $row["biomeIDs"]);
+                $nameArray = explode(',', $row["bioNames"]);
+				echo "<td class='nowrap'>";
+                for ($i = 0; $i < count($idArray); $i++) {
+                    if ($i > 0)
+                        echo '<br>';
+                    echo '<a href="genericBiome.php?bioID=' . $idArray[$i] . '">' . $nameArray[$i]. '</a>';
+                }
+                echo "</td>";
 				echo '</tr>';
 			}
 			

@@ -213,14 +213,21 @@ h1 {
 .center {
     text-align: center;
 }
+.nowrap {
+    white-space: nowrap;
+}
 
 #hellspawn {
 	background-image: url(images/background.jpg);
-    background-size: cover;
+    background-size: auto;
 }
 
 nav {
     background: rgba(75, 39, 4, 0.8);
+}
+
+.adminnavbar {
+    background: rgba(75, 39, 4, 0.5);
 }
 
 .search_input {
@@ -257,15 +264,19 @@ main {
     text-shadow: 0 0 5px #000;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    color: #FFF;
+    text-shadow: 0 0 5px #000;
+    text-align: center;
+}
+
 #paraOne {
     margin-top: 25px;
 	width: 100%;
-    padding: 0 25%;
+    padding: 0 10%;
 }
 
 #paraOne h3 {
-    color: #FFF;
-    text-shadow: 0 0 5px #000;
     margin: 25px 0;
 }
 
@@ -359,3 +370,34 @@ main {
     color: #D63;
 }
 
+.input-group-text {
+    color: #FFF;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.custom-select {
+    color: #FFF;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.custom-select option {
+    background: #420;
+    font-size: 14px;
+}
+
+.message {
+    text-align: center;
+    font-size: 24px;
+    margin: 20px 0 30px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 2rem;
+    line-height: 2em;
+}
+
+.error {
+    color: #F00;
+}
+
+.success {
+    color: #0F0;
+}
