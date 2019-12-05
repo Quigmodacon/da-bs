@@ -269,7 +269,7 @@ function show_favorites($conn, $favoriteID) {
 		while($row = $result->fetch_assoc()) {
 			echo '<tr>';
 			echo "<td>" . $row["organismID"]. "</td>";
-			echo "<td>" . $row["orgName"]. "</td>";
+			echo '<td><a href="genericOrganism.php?orgID=' . $row["organismID"] . '">' . $row["orgName"]. "</a></td>";
 			echo "<td>" . $row["sciName"]. "</td>";
 			echo "<td>" . $row["orgType"]. "</td>";
 			echo '</tr>';
@@ -332,6 +332,20 @@ function show_organism_select_list($conn, $name) {
 		echo '<select id="' . $name . '" name="' . $name . '">';
 		while($row = $result->fetch_assoc()) {
 			echo '<option value="' . $row["organismID"] . '">' . $row["orgName"] . ' -- ' . $row["orgType"] . '</option>';
+		}
+		echo '</select>';
+	} 
+}
+
+// Show a select list for adding organism to favorites list.
+function show_favorites_select_list($conn, $userID) {
+	$sql = "SELECT favoriteID, FROM favorite WHERE userID = ?";
+	$result = $conn->query($sql);
+
+	if ($result->num_rows > 0) {
+		echo '<select id="' . $name . '" name="' . $name . '">';
+		while($row = $result->fetch_assoc()) {
+			echo '<option value="' . $row["favoritesID"] . '">' . $row["favoriteID"] . '</option>';
 		}
 		echo '</select>';
 	} 

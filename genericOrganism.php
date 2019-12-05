@@ -12,6 +12,17 @@
 		<?php include 'nav.php';?>		
                 <?php include 'check_login.php'; ?>
 		<main class="container" role="main">
+<!--			<form method="post" class="main-form" action="favorite_organism_new.php">
+				<div class="form-group">
+				<input type="hidden" name="organismID" value="<?php echo $_GET['orgID']; ?>">
+				<div class="input-row">
+					<label for="favoriteID">Add to Favorites List</label>
+					<?php //show_favorites_select_list($conn, $userID); ?>
+				</div>
+				</div>
+				<button type="submit" class="btn btn-outline-light">ADD</button>
+			</form>
+-->
 			<?php include 'database.php';
 				$orgID = $_GET['orgID'];
 				$sql = $conn->prepare('SELECT * FROM organism WHERE organismID = ?');

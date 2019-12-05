@@ -21,7 +21,7 @@
 				$userID = get_current_userID($conn, $_SESSION['username']);
 				$favoriteIDs = get_favoriteIDs($conn, $userID);
 				foreach ($favoriteIDs as $favoriteID) {
-					echo '<div class="favorite">';
+					echo '<div id="paraOne">';
 					show_favorites($conn, $favoriteID);
 					echo '<p><a href="favorite_organism_new.php?favoriteID=' . $favoriteID . '">New favorite Organism</a></p>';
 					echo '</div>';
