@@ -4,7 +4,7 @@ function show_organism($conn, $extra = '') {
 
 	//include "dbconnect.php";
 
-    $sql = "SELECT organismID, orgName, sciName, orgType, GROUP_CONCAT(locationID) AS locationIDs, GROUP_CONCAT(locName) AS locNames FROM organism NATURAL JOIN organism_location NATURAL JOIN location ".$extra." GROUP BY organismID";
+    $sql = "SELECT organismID, orgName, sciName, orgType, GROUP_CONCAT(locationID) AS locationIDs, GROUP_CONCAT(locName) AS locNames FROM organism NATURAL LEFT JOIN organism_location NATURAL LEFT JOIN location ".$extra." GROUP BY organismID";
 	$result = $conn->query($sql); // object oriented execution of query
 
 			echo '<table>';
@@ -80,7 +80,7 @@ function show_location($conn, $extra = '') {
 
 	//include "dbconnect.php";
 
-	$sql = "SELECT locationID, locName, GROUP_CONCAT(biomeID) AS biomeIDs, GROUP_CONCAT(bioName) AS bioNames FROM location NATURAL JOIN location_biome NATURAL JOIN biome ".$extra." GROUP BY locationID";
+	$sql = "SELECT locationID, locName, GROUP_CONCAT(biomeID) AS biomeIDs, GROUP_CONCAT(bioName) AS bioNames FROM location NATURAL LEFT JOIN location_biome NATURAL LEFT JOIN biome ".$extra." GROUP BY locationID";
 	$result = $conn->query($sql); // object oriented execution of query
 
 			echo '<table>';
