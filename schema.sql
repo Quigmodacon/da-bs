@@ -75,3 +75,12 @@ CREATE TABLE favorite_biome (
     FOREIGN KEY (biomeID) REFERENCES biome(biomeID)
 );
 
+DROP TABLE IF EXISTS favorite_location;
+CREATE TABLE favorite_location (
+    favoriteID int,
+    locationID int,
+    PRIMARY KEY (favoriteID, locationID),
+    FOREIGN KEY (favoriteID) REFERENCES favorite(favoriteID),
+    FOREIGN KEY (locationID) REFERENCES location(locationID)
+);
+

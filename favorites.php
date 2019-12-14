@@ -12,29 +12,27 @@
 		<?php include 'nav.php';?>
 		<?php require 'phpFunctions.php'?>
 		<?php require 'database.php' ?>
-	        <?php include 'check_login.php'; ?>
+	    <?php include 'check_login.php'; ?>
 		<main class="container" role="main">
 		<div>
 			<h1 id="headertext" align="center">Favorites</h1>
 			<!-- rest of body -->
+			<div id="paraOne">
+			<h3>Organism</h3>
 			<?php
 				$userID = get_current_userID($conn, $_SESSION['username']);
-				$favoriteIDs = get_favoriteIDs($conn, $userID);
-				foreach ($favoriteIDs as $favoriteID) {
-					echo '<div id="paraOne">';
-					show_favorites($conn, $favoriteID);
-					echo '<p><a href="favorite_organism_new.php?favoriteID=' . $favoriteID . '">New favorite Organism</a></p>';
-					echo '</div>';
-				}
-
-				if (count($favoriteIDs) == 0) {
-					echo 'No favorite lists found';
-				}
+                show_organism($conn, 'NATURAL JOIN favorite_organism NATURAL JOIN favorite WHERE userID = '.$userID);
 			?>
-
-			<form action="favorite_new.php" method="post" style="text-align: center;">
-				<input type="submit" value="Add New Favorite List">
-			</form>
+			<h3>Biome</h3>
+			<?php
+				$userID = get_current_userID($conn, $_SESSION['username']);
+                show_biome($conn, 'NATURAL JOIN favorite_biome NATURAL JOIN favorite WHERE userID = '.$userID);
+			?>
+			<h3>Location</h3>
+			<?php
+				$userID = get_current_userID($conn, $_SESSION['username']);
+                show_location($conn, 'NATURAL JOIN favorite_location NATURAL JOIN favorite WHERE userID = '.$userID);
+			?>
 		</div>
 		</main>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
